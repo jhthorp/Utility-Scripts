@@ -19,17 +19,9 @@ Initial release of the following scripts:
 	destructive mode.
 	* run_badblocks_operational.sh - A script to run a BadBlocks test in 
 	operational mode (Non-Destructive).
-* Burnin
-	* burnin_drives.sh - A script to begin a drive Burn-In for a collection of 
-	drives.
-	* burnin_drive.sh - A script to begin a drive Burn-In for a single drive.
 * CP (Copy)
 	* copy_all_files_to_dir.sh - A script to copy all files recursively into a 
 	single directory.
-* Erase
-	* erase_drives.sh - A script to begin a drive erase for a collection of 
-	drives.
-	* erase_drive.sh - A script to begin a drive erase for a single drive.
 * Imaging
 	* run_imaging.sh - A script to use the DD command to write data across 
 	every bit in a drive or use the DD command to read all data bits from a 

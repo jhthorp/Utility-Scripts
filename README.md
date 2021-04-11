@@ -1,8 +1,7 @@
 # Utility Scripts
 
 The scripts within this project are for useful operations across all supported 
-operating systems hich include various utilities such as those for Burn-In/Erase 
-processes.
+operating systems which include various utilities.
 
 ## Table of Contents
 
@@ -15,14 +14,8 @@ processes.
 		* [run_badblocks.sh](#run_badblockssh)
 		* [run_badblocks_operational.sh](#run_badblocks_operationalsh)
 		* [run_badblocks_destructive.sh](#run_badblocks_destructivesh)
-	* [Burn-In](#burnin)
-		* [burnin_drives.sh](#burnin_drivessh)
-		* [burnin_drive.sh](#burnin_drivesh)
 	* [CP](#cp)
 		* [copy_all_files_to_dir.sh](#copy_all_files_to_dirsh)
-	* [Erase](#erase)
-		* [erase_drives.sh](#erase_drivessh)
-		* [erase_drive.sh](#erase_drivesh)
 	* [Imaging](#imaging)
 		* [run_imaging.sh](#run_imagingsh)
 		* [run_imaging_read_write.sh](#run_imaging_read_writesh)
@@ -82,7 +75,6 @@ processes.
 
 | :warning: |                      :warning:                       | :warning: |
 |   :---:   |                        :---:                         |   :---:   |
-| :warning: |**Executing Burn-In/Erase scripts will destroy data!**| :warning: |
 | :warning: |   **Executing Imaging scripts may destroy data!**    | :warning: |
 | :warning: |                      :warning:                       | :warning: |
 
@@ -292,89 +284,6 @@ _Drives Tested_
 |  :white_check_mark:  |                   WD Red Plus (3TB)                   |
 |  :white_check_mark:  |                  Kingston 240GB A400                  |
 
-### Burn-In
-
-#### burnin_drives.sh
-
-A script to begin a drive Burn-In for a collection of drives.
-
-_Usage_
-
-```
-[bash] ./burnin_drives.sh [drives_override] [zero_drives] [session_suffix] 
-[end_on_detach]
-```
-
-_Options_
-
-| Option Flag |                          Description                           |
-|    :---:    |                             :---:                              |
-|     N/A     |                              N/A                               |
-
-_Parameters_
-
-|         Parameter         |                   Description                    |
-|           :---:           |                      :---:                       |
-|      Drives Override      |          Array of drive IDs to burn-in           |
-|        Zero Drives        |   Zero the drives after testing has completed    |
-|      Session Suffix       |        Suffix to add to the session name         |
-|       End On Detach       |  End process when the TMUX session is detached   |
-
-_Examples_
-
-* **./burnin_drives.sh** "/dev/da0 /dev/da1 /dev/da2"
-* **./burnin_drives.sh** "/dev/da0 /dev/da1 /dev/da2" true
-* **./burnin_drives.sh** "/dev/da0 /dev/da1 /dev/da2" false "session2"
-* **./burnin_drives.sh** "/dev/da0 /dev/da1 /dev/da2" false "session2" true
-
-_Drives Tested_
-
-|        Status        |                       Component                       |
-|        :---:         |                         :---:                         |
-|  :white_check_mark:  |                   WD Red Plus (8TB)                   |
-|  :white_check_mark:  |                   WD Red Plus (6TB)                   |
-|  :white_check_mark:  |                     WD Red (6TB)                      |
-|  :white_check_mark:  |                   WD Red Plus (3TB)                   |
-|  :white_check_mark:  |                  Kingston 240GB A400                  |
-
-#### burnin_drive.sh
-
-A script to begin a drive Burn-In for a single drive.
-
-_Usage_
-
-```
-[bash] ./burnin_drive.sh <drive> [zero_drive]
-```
-
-_Options_
-
-| Option Flag |                          Description                           |
-|    :---:    |                             :---:                              |
-|     N/A     |                              N/A                               |
-
-_Parameters_
-
-|         Parameter         |                   Description                    |
-|           :---:           |                      :---:                       |
-|           Drive           |                  Drive to test                   |
-|        Zero Drive         |    Zero the drive after testing has completed    |
-
-_Examples_
-
-* **./burnin_drive.sh** "/dev/da1"
-* **./burnin_drive.sh** "/dev/da1" true
-
-_Drives Tested_
-
-|        Status        |                       Component                       |
-|        :---:         |                         :---:                         |
-|  :white_check_mark:  |                   WD Red Plus (8TB)                   |
-|  :white_check_mark:  |                   WD Red Plus (6TB)                   |
-|  :white_check_mark:  |                     WD Red (6TB)                      |
-|  :white_check_mark:  |                   WD Red Plus (3TB)                   |
-|  :white_check_mark:  |                  Kingston 240GB A400                  |
-
 ### CP
 
 #### copy_all_files_to_dir.sh
@@ -406,84 +315,6 @@ _Examples_
 
 * **./copy_all_files_to_dir.sh** "./Source" "./Destination" "*.txt"
 * **./copy_all_files_to_dir.sh** "./Source" "./Destination" "*.txt" false
-
-### Erase
-
-#### erase_drives.sh
-
-A script to begin a drive erase for a collection of drives.
-
-_Usage_
-
-```
-[bash] ./erase_drives.sh [drives_override] [session_suffix] [end_on_detach]
-```
-
-_Options_
-
-| Option Flag |                          Description                           |
-|    :---:    |                             :---:                              |
-|     N/A     |                              N/A                               |
-
-_Parameters_
-
-|         Parameter         |                   Description                    |
-|           :---:           |                      :---:                       |
-|      Drives Override      |           Array of drive IDs to erase            |
-|      Session Suffix       |        Suffix to add to the session name         |
-|       End On Detach       |  End process when the TMUX session is detached   |
-
-_Examples_
-
-* **./erase_drives.sh** "/dev/da0 /dev/da1 /dev/da2"
-* **./erase_drives.sh** "/dev/da0 /dev/da1 /dev/da2" "session2"
-* **./erase_drives.sh** "/dev/da0 /dev/da1 /dev/da2" "session2" true
-
-_Drives Tested_
-
-|        Status        |                       Component                       |
-|        :---:         |                         :---:                         |
-|  :white_check_mark:  |                   WD Red Plus (8TB)                   |
-|  :white_check_mark:  |                   WD Red Plus (6TB)                   |
-|  :white_check_mark:  |                     WD Red (6TB)                      |
-|  :white_check_mark:  |                   WD Red Plus (3TB)                   |
-|  :white_check_mark:  |                  Kingston 240GB A400                  |
-
-#### erase_drive.sh
-
-A script to begin a drive erase for a single drive.
-
-_Usage_
-
-```
-[bash] ./erase_drive.sh <drive>
-```
-
-_Options_
-
-| Option Flag |                          Description                           |
-|    :---:    |                             :---:                              |
-|     N/A     |                              N/A                               |
-
-_Parameters_
-
-|         Parameter         |                   Description                    |
-|           :---:           |                      :---:                       |
-|           Drive           |                  Drive to erase                  |
-
-_Examples_
-
-* **./erase_drive.sh** "/dev/da3"
-
-_Drives Tested_
-
-|        Status        |                       Component                       |
-|        :---:         |                         :---:                         |
-|  :white_check_mark:  |                   WD Red Plus (8TB)                   |
-|  :white_check_mark:  |                   WD Red Plus (6TB)                   |
-|  :white_check_mark:  |                     WD Red (6TB)                      |
-|  :white_check_mark:  |                   WD Red Plus (3TB)                   |
-|  :white_check_mark:  |                  Kingston 240GB A400                  |
 
 ### Imaging
 
