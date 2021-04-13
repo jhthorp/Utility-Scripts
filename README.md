@@ -106,7 +106,7 @@ mode.
 _Usage_
 
 ```
-[bash] ./run_badblocks.sh <drive> [blocksize] [destructive]
+[bash] ./run_badblocks.sh [auto_skip] <drive> [blocksize] [destructive]
 ```
 
 _Options_
@@ -119,6 +119,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |                  Drive to test                   |
 |        Block Size         |                Block Size to use                 |
 |        Destructive        |               Type of test to run                |
@@ -151,6 +152,7 @@ _Examples_
 * **./run_badblocks.sh** "/dev/da1"
 * **./run_badblocks.sh** "/dev/da1" 4096
 * **./run_badblocks.sh** "/dev/da1" 4096 true
+* **./run_badblocks.sh** "auto_skip" "/dev/da1" 4096 true
 
 _Drives Tested_
 
@@ -169,7 +171,7 @@ A script to run a BadBlocks test in operational (Non-Destructive) mode.
 _Usage_
 
 ```
-[bash] ./run_badblocks_operational.sh <drive> [blocksize]
+[bash] ./run_badblocks_operational.sh [auto_skip] <drive> [blocksize]
 ```
 
 _Options_
@@ -182,6 +184,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |                  Drive to test                   |
 |        Block Size         |                Block Size to use                 |
 
@@ -212,6 +215,7 @@ _Examples_
 
 * **./run_badblocks_operational.sh** "/dev/da1"
 * **./run_badblocks_operational.sh** "/dev/da1" 4096
+* **./run_badblocks_operational.sh** "auto_skip" "/dev/da1" 4096
 
 _Drives Tested_
 
@@ -230,7 +234,7 @@ A script to A script to run a BadBlocks test in destructive mode.
 _Usage_
 
 ```
-[bash] ./run_badblocks_destructive.sh <drive> [blocksize]
+[bash] ./run_badblocks_destructive.sh [auto_skip] <drive> [blocksize]
 ```
 
 _Options_
@@ -243,6 +247,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |                  Drive to test                   |
 |        Block Size         |                Block Size to use                 |
 
@@ -273,6 +278,7 @@ _Examples_
 
 * **./run_badblocks_destructive.sh** "/dev/da1"
 * **./run_badblocks_destructive.sh** "/dev/da1" 4096
+* **./run_badblocks_destructive.sh** "auto_skip" "/dev/da1" 4096
 
 _Drives Tested_
 
@@ -293,7 +299,7 @@ A script to copy all files recursively into a single directory.
 _Usage_
 
 ```
-[bash] ./copy_all_files_to_dir.sh <srcDir> <destDir> <filenameStructure> [keepStructure]
+[bash] ./copy_all_files_to_dir.sh [auto_skip] <srcDir> <destDir> <filenameStructure> [keepStructure]
 ```
 
 _Options_
@@ -306,6 +312,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |     Source Directory      |                 Source directory                 |
 |   Destination Directory   |              Destination directory               |
 |    Filename Structure     |             REGEX for file matching              |
@@ -315,6 +322,8 @@ _Examples_
 
 * **./copy_all_files_to_dir.sh** "./Source" "./Destination" "*.txt"
 * **./copy_all_files_to_dir.sh** "./Source" "./Destination" "*.txt" false
+* **./copy_all_files_to_dir.sh** "auto_skip" "./Source" "./Destination" "*.txt" 
+false
 
 ### Imaging
 
@@ -327,7 +336,7 @@ parallel.
 _Usage_
 
 ```
-[bash] ./run_imaging.sh <drive> [blocksize] [type] [write_random_pattern]
+[bash] ./run_imaging.sh [auto_skip] <drive> [blocksize] [type] [write_random_pattern]
 ```
 
 _Options_
@@ -340,6 +349,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |                  Drive to test                   |
 |        Block Size         |                Block Size to use                 |
 |           Type            |             The type of test to run              |
@@ -382,6 +392,7 @@ _Examples_
 * **./run_imaging.sh** "/dev/da4" 1048576
 * **./run_imaging.sh** "/dev/da4" 1048576 "read-write"
 * **./run_imaging.sh** "/dev/da4" 1048576 "read-write" true
+* **./run_imaging.sh** "auto_skip" "/dev/da4" 1048576 "read-write" true
 
 _Drives Tested_
 
@@ -401,7 +412,7 @@ drive in parallel.
 _Usage_
 
 ```
-[bash] ./run_imaging_read_write.sh <drive> [blocksize] [write_random_pattern]
+[bash] ./run_imaging_read_write.sh [auto_skip] <drive> [blocksize] [write_random_pattern]
 ```
 
 _Options_
@@ -414,6 +425,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |                  Drive to test                   |
 |        Block Size         |                Block Size to use                 |
 |   Write Random Pattern    |              Write a random pattern              |
@@ -446,6 +458,7 @@ _Examples_
 * **./run_imaging_read_write.sh** "/dev/da3"
 * **./run_imaging_read_write.sh** "/dev/da3" 1048576
 * **./run_imaging_read_write.sh** "/dev/da3" 1048576 true
+* **./run_imaging_read_write.sh** "auto_skip" "/dev/da3" 1048576 true
 
 _Drives Tested_
 
@@ -464,7 +477,7 @@ A script to use the DD command to read all data bits from a drive.
 _Usage_
 
 ```
-[bash] ./run_imaging_read.sh <drive> [blocksize]
+[bash] ./run_imaging_read.sh [auto_skip] <drive> [blocksize]
 ```
 
 _Options_
@@ -477,6 +490,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |                  Drive to test                   |
 |        Block Size         |                Block Size to use                 |
 
@@ -507,6 +521,7 @@ _Examples_
 
 * **./run_imaging_read.sh** "/dev/da1"
 * **./run_imaging_read.sh** "/dev/da1" 1048576
+* **./run_imaging_read.sh** "auto_skip" "/dev/da1" 1048576
 
 _Drives Tested_
 
@@ -525,7 +540,7 @@ A script to use the DD command to write data across every bit in a drive.
 _Usage_
 
 ```
-[bash] ./run_imaging_write.sh <drive> [blocksize] [random]
+[bash] ./run_imaging_write.sh [auto_skip] <drive> [blocksize] [random]
 ```
 
 _Options_
@@ -538,6 +553,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |                  Drive to test                   |
 |        Block Size         |                Block Size to use                 |
 |          Random           |              Write a random pattern              |
@@ -570,6 +586,7 @@ _Examples_
 * **./run_imaging_write.sh** "/dev/da0"
 * **./run_imaging_write.sh** "/dev/da0" 1048576
 * **./run_imaging_write.sh** "/dev/da0" 1048576 true
+* **./run_imaging_write.sh** "auto_skip" "/dev/da0" 1048576 true
 
 _Drives Tested_
 
@@ -590,7 +607,7 @@ A script to execute any number of commands in parallel.
 _Usage_
 
 ```
-[bash] ./parallel_commands.sh <cmds>
+[bash] ./parallel_commands.sh [auto_skip] <cmds>
 ```
 
 _Options_
@@ -603,6 +620,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |      Commands Array       |                 Commands to run                  |
 
 _Examples_
@@ -610,6 +628,8 @@ _Examples_
 * **./parallel_commands.sh** "echo Hello World"
 * **./parallel_commands.sh** "echo Hello" "echo World"
 * **./parallel_commands.sh** "echo Hello World" "echo Hello" "echo World"
+* **./parallel_commands.sh** "auto_skip" "echo Hello World" "echo Hello" 
+"echo World"
 
 ### SCP
 
@@ -620,7 +640,8 @@ A script to securely copy files from a remote server.
 _Usage_
 
 ```
-[bash] ./scp_from_remote.sh <host> <port> <user> <remotePath> <localPath>
+[bash] ./scp_from_remote.sh [auto_skip] <host> <port> <user> <remotePath> 
+<localPath>
 ```
 
 _Options_
@@ -633,6 +654,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Host            |            Host address to connect to            |
 |           Port            |                Port to connect on                |
 |           User            |               User to connect with               |
@@ -642,6 +664,7 @@ _Parameters_
 _Examples_
 
 * **./scp_from_remote.sh** 192.168.1.1 22 "root" "~/" "~/Documents"
+* **./scp_from_remote.sh** "auto_skip" 192.168.1.1 22 "root" "~/" "~/Documents"
 
 #### scp_to_remote.sh
 
@@ -650,7 +673,8 @@ A script to securely copy files to a remote server.
 _Usage_
 
 ```
-[bash] ./scp_to_remote.sh <host> <port> <user> <localPath> <remotePath>
+[bash] ./scp_to_remote.sh [auto_skip] <host> <port> <user> <localPath> 
+<remotePath>
 ```
 
 _Options_
@@ -663,6 +687,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Host            |            Host address to connect to            |
 |           Port            |                Port to connect on                |
 |           User            |               User to connect with               |
@@ -672,6 +697,7 @@ _Parameters_
 _Examples_
 
 * **./scp_to_remote.sh** 192.168.1.1 22 "root" "~/Documents" "~/"
+* **./scp_to_remote.sh** "auto_skip" 192.168.1.1 22 "root" "~/Documents" "~/"
 
 ### SMART
 
@@ -682,7 +708,7 @@ A script to run a query for the SMART summary.
 _Usage_
 
 ```
-[bash] ./read_smart_test_results.sh <drive>
+[bash] ./read_smart_test_results.sh [auto_skip] <drive>
 ```
 
 _Options_
@@ -695,11 +721,13 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |          Drive to read the results from          |
 
 _Examples_
 
 * **./read_smart_test_results.sh** "/dev/da0"
+* **./read_smart_test_results.sh** "auto_skip" "/dev/da0"
 
 _Drives Tested_
 
@@ -718,7 +746,7 @@ A script to run a SMART conveyance, short or long test.
 _Usage_
 
 ```
-[bash] ./run_smart_test.sh <drive> <type> [captive]
+[bash] ./run_smart_test.sh [auto_skip] <drive> <type> [captive]
 ```
 
 _Options_
@@ -731,6 +759,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |                  Drive to test                   |
 |           Type            |               Type of test to run                |
 |          Captive          |           Run the test in CAPTIVE mode           |
@@ -747,6 +776,7 @@ _Examples_
 
 * **./run_smart_test.sh** "/dev/da5" "long"
 * **./run_smart_test.sh** "/dev/da5" "conveyance" true
+* **./run_smart_test.sh** "auto_skip" "/dev/da5" "conveyance" true
 
 _Drives Tested_
 
@@ -766,7 +796,7 @@ status.
 _Usage_
 
 ```
-[bash] ./run_smart_test_with_polling.sh <drive> <type>
+[bash] ./run_smart_test_with_polling.sh [auto_skip] <drive> <type>
 ```
 
 _Options_
@@ -779,6 +809,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |                  Drive to test                   |
 |           Type            |               Type of test to run                |
 
@@ -794,6 +825,7 @@ _Examples_
 
 * **./run_smart_test_with_polling.sh** "/dev/da5" "long"
 * **./run_smart_test_with_polling.sh** "/dev/da5" "conveyance"
+* **./run_smart_test_with_polling.sh** "auto_skip" "/dev/da5" "conveyance"
 
 _Drives Tested_
 
@@ -812,7 +844,7 @@ A script to run a SMART conveyance test.
 _Usage_
 
 ```
-[bash] ./run_smart_conveyance_test.sh <drive> [captive]
+[bash] ./run_smart_conveyance_test.sh [auto_skip] <drive> [captive]
 ```
 
 _Options_
@@ -825,6 +857,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |                  Drive to test                   |
 |          Captive          |           Run the test in CAPTIVE mode           |
 
@@ -832,6 +865,7 @@ _Examples_
 
 * **./run_smart_conveyance_test.sh** "/dev/da2"
 * **./run_smart_conveyance_test.sh** "/dev/da2" true
+* **./run_smart_conveyance_test.sh** "auto_skip" "/dev/da2" true
 
 _Drives Tested_
 
@@ -850,7 +884,7 @@ A script to run a SMART short test.
 _Usage_
 
 ```
-[bash] ./run_smart_short_test.sh <drive> [captive]
+[bash] ./run_smart_short_test.sh [auto_skip] <drive> [captive]
 ```
 
 _Options_
@@ -863,6 +897,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |                  Drive to test                   |
 |          Captive          |           Run the test in CAPTIVE mode           |
 
@@ -870,6 +905,7 @@ _Examples_
 
 * **./run_smart_short_test.sh** "/dev/da2"
 * **./run_smart_short_test.sh** "/dev/da2" true
+* **./run_smart_short_test.sh** "auto_skip" "/dev/da2" true
 
 _Drives Tested_
 
@@ -888,7 +924,7 @@ A script to run a SMART long test.
 _Usage_
 
 ```
-[bash] ./run_smart_long_test.sh <drive> [captive]
+[bash] ./run_smart_long_test.sh [auto_skip] <drive> [captive]
 ```
 
 _Options_
@@ -901,6 +937,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Drive           |                  Drive to test                   |
 |          Captive          |           Run the test in CAPTIVE mode           |
 
@@ -908,6 +945,7 @@ _Examples_
 
 * **./run_smart_long_test.sh** "/dev/da2"
 * **./run_smart_long_test.sh** "/dev/da2" true
+* **./run_smart_long_test.sh** "auto_skip" "/dev/da2" true
 
 _Drives Tested_
 
@@ -928,7 +966,7 @@ A script to connect to a server using an SSH connection.
 _Usage_
 
 ```
-[bash] ./connect.sh <host> <port> <user>
+[bash] ./connect.sh [auto_skip] <host> <port> <user>
 ```
 
 _Options_
@@ -941,6 +979,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Host            |            Host address to connect to            |
 |           Port            |                Port to connect on                |
 |           User            |               User to connect with               |
@@ -948,6 +987,7 @@ _Parameters_
 _Examples_
 
 * **./connect.sh** 192.168.1.1 22 "root"
+* **./connect.sh** "auto_skip" 192.168.1.1 22 "root"
 
 #### run_command.sh
 
@@ -956,7 +996,7 @@ A script to execute a command over an SSH connection.
 _Usage_
 
 ```
-[bash] ./run_command.sh <host> <port> <user> <cmd>
+[bash] ./run_command.sh [auto_skip] <host> <port> <user> <cmd>
 ```
 
 _Options_
@@ -969,6 +1009,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Host            |            Host address to connect to            |
 |           Port            |                Port to connect on                |
 |           User            |               User to connect with               |
@@ -977,6 +1018,7 @@ _Parameters_
 _Examples_
 
 * **./run_command.sh** 192.168.1.1 22 "root" "pwd"
+* **./run_command.sh** "auto_skip" 192.168.1.1 22 "root" "pwd"
 
 #### run_script.sh
 
@@ -985,7 +1027,7 @@ A script to execute a script over an SSH connection.
 _Usage_
 
 ```
-[bash] ./run_script.sh <host> <port> <user> <script> <params>
+[bash] ./run_script.sh [auto_skip] <host> <port> <user> <script> <params>
 ```
 
 _Options_
@@ -998,6 +1040,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Host            |            Host address to connect to            |
 |           Port            |                Port to connect on                |
 |           User            |               User to connect with               |
@@ -1007,6 +1050,8 @@ _Parameters_
 _Examples_
 
 * **./run_script.sh** 192.168.1.1 22 "root" 
+"./Utility-Scripts/tmux/start_tmux_session" "session-name"
+* **./run_script.sh** "auto_skip" 192.168.1.1 22 "root" 
 "./Utility-Scripts/tmux/start_tmux_session" "session-name"
 
 ### Status
@@ -1019,7 +1064,7 @@ or just those that are SMART-capable drives.
 _Usage_
 
 ```
-[bash] ./list_drives.sh [all_drives] [use_sysctl]
+[bash] ./list_drives.sh [auto_skip] [all_drives] [use_sysctl]
 ```
 
 _Options_
@@ -1032,6 +1077,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |        All Drives         |List all available drives or SMART-capable drives |
 |        Use Sysctl         |          Use Sysctl instead of Smartctl          |
 
@@ -1040,6 +1086,7 @@ _Examples_
 * **./list_drives.sh**
 * **./list_drives.sh** true
 * **./list_drives.sh** true true
+* **./list_drives.sh** "auto_skip" true true
 
 #### list_all_drives.sh
 
@@ -1048,7 +1095,7 @@ A script to use the SYS or SMART commands to list all available drives.
 _Usage_
 
 ```
-[bash] ./list_all_drives.sh [use_sysctl]
+[bash] ./list_all_drives.sh [auto_skip] [use_sysctl]
 ```
 
 _Options_
@@ -1061,12 +1108,14 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |        Use Sysctl         |          Use Sysctl instead of Smartctl          |
 
 _Examples_
 
 * **./list_all_drives.sh**
 * **./list_all_drives.sh** true
+* **./list_all_drives.sh** "auto_skip" true
 
 #### list_all_drives_smartctl.sh
 
@@ -1075,7 +1124,7 @@ A script to use the SMART commands to list all available drives.
 _Usage_
 
 ```
-[bash] ./list_all_drives_smartctl.sh
+[bash] ./list_all_drives_smartctl.sh [auto_skip]
 ```
 
 _Options_
@@ -1088,11 +1137,12 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
-|            N/A            |                       N/A                        |
+|      Automated Skip       |            Continue without prompting            |
 
 _Examples_
 
 * **./list_all_drives_smartctl.sh**
+* **./list_all_drives_smartctl.sh** "auto_skip"
 
 #### list_all_drives_sysctl.sh
 
@@ -1101,7 +1151,7 @@ A script to use the SYS CONTROL commands to list all available drives.
 _Usage_
 
 ```
-[bash] ./list_all_drives_sysctl.sh
+[bash] ./list_all_drives_sysctl.sh [auto_skip]
 ```
 
 _Options_
@@ -1114,11 +1164,12 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
-|            N/A            |                       N/A                        |
+|      Automated Skip       |            Continue without prompting            |
 
 _Examples_
 
 * **./list_all_drives_sysctl.sh**
+* **./list_all_drives_sysctl.sh** "auto_skip"
 
 #### list_smart_drives.sh
 
@@ -1128,7 +1179,7 @@ drives.
 _Usage_
 
 ```
-[bash] ./list_smart_drives.sh <use_sysctl>
+[bash] ./list_smart_drives.sh [auto_skip] <use_sysctl>
 ```
 
 _Options_
@@ -1141,12 +1192,14 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |        Use Sysctl         |          Use Sysctl instead of Smartctl          |
 
 _Examples_
 
 * **./list_smart_drives.sh**
 * **./list_smart_drives.sh** true
+* **./list_smart_drives.sh** "auto_skip" true
 
 #### list_smart_drives_smartctl.sh
 
@@ -1155,7 +1208,7 @@ A script to use the SMART commands to list available SMART-capable drives.
 _Usage_
 
 ```
-[bash] ./list_smart_drives_smartctl.sh
+[bash] ./list_smart_drives_smartctl.sh [auto_skip]
 ```
 
 _Options_
@@ -1168,11 +1221,12 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
-|            N/A            |                       N/A                        |
+|      Automated Skip       |            Continue without prompting            |
 
 _Examples_
 
 * **./list_smart_drives_smartctl.sh**
+* **./list_smart_drives_smartctl.sh** "auto_skip"
 
 #### list_smart_drives_sysctl.sh
 
@@ -1181,7 +1235,7 @@ A script to use the SYS CONTROL commands to list available SMART-capable drives.
 _Usage_
 
 ```
-[bash] ./list_smart_drives_sysctl.sh
+[bash] ./list_smart_drives_sysctl.sh [auto_skip]
 ```
 
 _Options_
@@ -1194,11 +1248,12 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
-|            N/A            |                       N/A                        |
+|      Automated Skip       |            Continue without prompting            |
 
 _Examples_
 
 * **./list_smart_drives_sysctl.sh**
+* **./list_smart_drives_sysctl.sh** "auto_skip"
 
 ### TMUX
 
@@ -1209,7 +1264,7 @@ A script to start a new TMUX session.
 _Usage_
 
 ```
-[bash] ./start_tmux_session.sh <name>
+[bash] ./start_tmux_session.sh [auto_skip] <name>
 ```
 
 _Options_
@@ -1222,11 +1277,13 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Name            |                TMUX session name                 |
 
 _Examples_
 
 * **./start_tmux_session.sh** "Session Name"
+* **./start_tmux_session.sh** "auto_skip" "Session Name"
 
 #### end_tmux_session.sh
 
@@ -1235,7 +1292,7 @@ A script to end an existing TMUX session.
 _Usage_
 
 ```
-[bash] ./end_tmux_session.sh <name>
+[bash] ./end_tmux_session.sh [auto_skip] <name>
 ```
 
 _Options_
@@ -1248,11 +1305,13 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Name            |                TMUX session name                 |
 
 _Examples_
 
 * **./end_tmux_session.sh** "Session Name"
+* **./end_tmux_session.sh** "auto_skip" "Session Name"
 
 #### attach_tmux_session.sh
 
@@ -1261,7 +1320,7 @@ A script to attach to an active TMUX session.
 _Usage_
 
 ```
-[bash] ./attach_tmux_session.sh <name>
+[bash] ./attach_tmux_session.sh [auto_skip] <name>
 ```
 
 _Options_
@@ -1274,11 +1333,13 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Name            |                TMUX session name                 |
 
 _Examples_
 
 * **./attach_tmux_session.sh** "Session Name"
+* **./attach_tmux_session.sh** "auto_skip" "Session Name"
 
 #### detach_tmux_session.sh
 
@@ -1287,7 +1348,7 @@ A script to detach from an active TMUX session.
 _Usage_
 
 ```
-[bash] ./detach_tmux_session.sh
+[bash] ./detach_tmux_session.sh [auto_skip]
 ```
 
 _Options_
@@ -1300,11 +1361,12 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
-|            N/A            |                       N/A                        |
+|      Automated Skip       |            Continue without prompting            |
 
 _Examples_
 
 * **./detach_tmux_session.sh**
+* **./detach_tmux_session.sh** "auto_skip"
 
 #### select_session_pane.sh
 
@@ -1313,7 +1375,7 @@ A script to select/activate a specific TMUX window pane.
 _Usage_
 
 ```
-[bash] ./select_session_pane.sh <pane>
+[bash] ./select_session_pane.sh [auto_skip] <pane>
 ```
 
 _Options_
@@ -1326,11 +1388,13 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Pane            |                TMUX session pane                 |
 
 _Examples_
 
 * **./select_session_pane.sh** 1
+* **./select_session_pane.sh** "auto_skip" 1
 
 #### send_tmux_pane_command.sh
 
@@ -1339,7 +1403,7 @@ A script to send and execute a command in a specific TMUX window pane.
 _Usage_
 
 ```
-[bash] ./send_tmux_pane_command.sh <pane> <cmd>
+[bash] ./send_tmux_pane_command.sh [auto_skip] <pane> <cmd>
 ```
 
 _Options_
@@ -1352,12 +1416,14 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Pane            |                TMUX session pane                 |
 |          Command          |     Command to run in the TMUX session pane      |
 
 _Examples_
 
 * **./send_tmux_pane_command.sh** 1 "pwd"
+* **./send_tmux_pane_command.sh** "auto_skip" 1 "pwd"
 
 #### send_tmux_shell_command.sh
 
@@ -1366,7 +1432,7 @@ A script to send and execute a shell command in a specific TMUX window.
 _Usage_
 
 ```
-[bash] ./send_tmux_shell_command.sh <name> <cmd>
+[bash] ./send_tmux_shell_command.sh [auto_skip] <name> <cmd>
 ```
 
 _Options_
@@ -1379,12 +1445,14 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |           Name            |                TMUX session name                 |
 |          Command          |        Command to run in the TMUX session        |
 
 _Examples_
 
 * **./send_tmux_shell_command.sh** "Session Name" "pwd"
+* **./send_tmux_shell_command.sh** "auto_skip" "Session Name" "pwd"
 
 #### set_layout.sh
 
@@ -1393,7 +1461,7 @@ A script to set a specific layout for an active TMUX window.
 _Usage_
 
 ```
-[bash] ./set_layout.sh <layout>
+[bash] ./set_layout.sh [auto_skip] <layout>
 ```
 
 _Options_
@@ -1406,6 +1474,7 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
+|      Automated Skip       |            Continue without prompting            |
 |          Layout           |                  Layout to set                   |
 
 _Layouts_
@@ -1421,6 +1490,7 @@ _Layouts_
 _Examples_
 
 * **./set_layout.sh** tiled
+* **./set_layout.sh** "auto_skip" tiled
 
 #### set_layout_tiled.sh
 
@@ -1429,7 +1499,7 @@ A script to set a tiled layout for an active TMUX window.
 _Usage_
 
 ```
-[bash] ./set_layout_tiled.sh
+[bash] ./set_layout_tiled.sh [auto_skip]
 ```
 
 _Options_
@@ -1442,11 +1512,12 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
-|            N/A            |                       N/A                        |
+|      Automated Skip       |            Continue without prompting            |
 
 _Examples_
 
 * **./set_layout_tiled.sh**
+* **./set_layout_tiled.sh** "auto_skip"
 
 #### split_window_horizontal.sh
 
@@ -1455,7 +1526,7 @@ A script to split an active TMUX window horizontally.
 _Usage_
 
 ```
-[bash] ./split_window_horizontal.sh
+[bash] ./split_window_horizontal.sh [auto_skip]
 ```
 
 _Options_
@@ -1468,11 +1539,12 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
-|            N/A            |                       N/A                        |
+|      Automated Skip       |            Continue without prompting            |
 
 _Examples_
 
 * **./split_window_horizontal.sh**
+* **./split_window_horizontal.sh** "auto_skip"
 
 #### split_window_vertical.sh
 
@@ -1481,7 +1553,7 @@ A script to split an active TMUX window vertically.
 _Usage_
 
 ```
-[bash] ./split_window_vertical.sh
+[bash] ./split_window_vertical.sh [auto_skip]
 ```
 
 _Options_
@@ -1494,11 +1566,12 @@ _Parameters_
 
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
-|            N/A            |                       N/A                        |
+|      Automated Skip       |            Continue without prompting            |
 
 _Examples_
 
 * **./split_window_vertical.sh**
+* **./split_window_vertical.sh** "auto_skip"
 
 ## Deployment
 
