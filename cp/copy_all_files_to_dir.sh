@@ -45,16 +45,28 @@ stack_vars[${#stack_vars[@]}]=1 ||
 stack_vars[${#stack_vars[@]}]=0
 
 # Determine the exectuable directory (DIR)
-stack_vars[${#stack_vars[@]}]="${BASH_SOURCE%/*}"
-if [[ ! -d "${stack_vars[${#stack_vars[@]}-1]}" ]]; 
-then 
-  stack_vars[${#stack_vars[@]}-1]="${PWD}"; 
+DIR_SRC="${BASH_SOURCE%/*}"
+if [[ ! -d "${DIR_SRC}" ]];
+then
+  DIR_SRC="${PWD}";
 fi
+
+# Convert any relative paths into absolute paths
+DIR_SRC=$(cd ${DIR_SRC}; printf %s. "$PWD")
+DIR_SRC=${DIR_SRC%?}
+
+# Copy over the DIR source and remove the temporary variable
+stack_vars[${#stack_vars[@]}]=${DIR_SRC}
+unset DIR_SRC
+
+# Add Functional Aliases
+SOURCING_INVOCATION () { echo "${stack_vars[${#stack_vars[@]}-2]}"; }
+DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 
 ################################################################################
 #                               SCRIPT INCLUDES                                #
 ################################################################################
-#. "${stack_vars[${#stack_vars[@]}-1]}/FILE_INCLUDE.sh"
+#. "$(DIR)/FILE_INCLUDE.sh"
 
 ################################################################################
 #                                  FUNCTIONS                                   #
@@ -69,10 +81,11 @@ fi
 #   [-na] N/A
 #
 # ARGUMENTS:
-#   [1 - srcDir] The source directory
-#   [2 - destDir] The destination directory
-#   [3 - filenameStructure] The REGEX for file matching
-#   [4 - keepStructure] The switch to keep the directory structure
+#   [1 - srcPath] The source directory path
+#   [2 - srcDir] The source directory relative to the source path
+#   [3 - destDir] The destination directory relative to the source path
+#   [4 - filenameStructure] The REGEX for file matching
+#   [5 - keepStructure] The switch to keep the directory structure
 #
 # OUTPUTS:
 #   N/A - N/A
@@ -83,10 +96,19 @@ fi
 #===============================================================================
 copy_all_files_to_dir ()
 {
-  declare -r srcDir=${1}
-  declare -r destDir=${2}
-  declare -r filenameStructure=${3}
-  declare -r keepStructure=${4-true}
+  declare -r srcPath=${1}
+  declare -r srcDirRelativeToPath=${2}
+  declare -r destDir=${3}
+  declare -r filenameStructure=${4}
+  declare -r keepStructure=${5-true}
+
+  declare -r CUR_DIR=$(printf %s. "$PWD")
+
+  # Change into the origin directory
+  cd ${srcPath}
+
+  mkdir \
+    -p ${destDir}
 
   if [ "${keepStructure}" = true ]
   then
@@ -96,8 +118,6 @@ copy_all_files_to_dir ()
       -name "${filenameStructure}" | 
       cpio -pdm --quiet "${destDir}"
   else
-    mkdir \
-      -p ${destDir}
     find \
       "${srcDir}" \
       -type f \
@@ -108,6 +128,9 @@ copy_all_files_to_dir ()
         "${destDir}" \
         \;
   fi
+
+  # Return to the original directory
+  cd ${CUR_DIR}
 }
 
 ################################################################################
@@ -135,7 +158,7 @@ copy_all_files_to_dir ()
 #   0 - SUCCESS
 #   Non-Zero - ERROR
 #===============================================================================
-if [ ${stack_vars[${#stack_vars[@]}-2]} = 0 ]; # SOURCING_INVOCATION
+if [ $(SOURCING_INVOCATION) = 0 ];
 then
   # Print a copyright/license header
   cat << EOF

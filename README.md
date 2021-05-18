@@ -299,7 +299,8 @@ A script to copy all files recursively into a single directory.
 _Usage_
 
 ```
-[bash] ./copy_all_files_to_dir.sh [auto_skip] <srcDir> <destDir> <filenameStructure> [keepStructure]
+[bash] ./copy_all_files_to_dir.sh [auto_skip] <srcPath> <srcDir> <destDir> 
+<filenameStructure> [keepStructure]
 ```
 
 _Options_
@@ -313,17 +314,20 @@ _Parameters_
 |         Parameter         |                   Description                    |
 |           :---:           |                      :---:                       |
 |      Automated Skip       |            Continue without prompting            |
-|     Source Directory      |                 Source directory                 |
-|   Destination Directory   |              Destination directory               |
+|        Source Path        |        Source directory path to work from        |
+|     Source Directory      |   Source directory relative to the source path   |
+|   Destination Directory   |Destination directory relative to the source path |
 |    Filename Structure     |             REGEX for file matching              |
 |      Keep Structure       |           Keep the directory structure           |
 
 _Examples_
 
-* **./copy_all_files_to_dir.sh** "./Source" "./Destination" "*.txt"
-* **./copy_all_files_to_dir.sh** "./Source" "./Destination" "*.txt" false
-* **./copy_all_files_to_dir.sh** "auto_skip" "./Source" "./Destination" "*.txt" 
-false
+* **./copy_all_files_to_dir.sh** "./path/to/dir" ./Source" "./Destination" 
+"*.txt"
+* **./copy_all_files_to_dir.sh** "./path/to/dir" "./Source" "./Destination" 
+"*.txt" false
+* **./copy_all_files_to_dir.sh** "auto_skip" "./path/to/dir" "./Source" 
+"./Destination" "*.txt" false
 
 ### Imaging
 
