@@ -94,11 +94,11 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 run_smart_test_with_polling ()
 {
-  declare -r drive=${1}
-  declare -r type=${2} # Values: short, long, conveyance
+  local drive=${1}
+  local type=${2} # Values: short, long, conveyance
   
   # Collect the Drive Capabilities
-  declare -r drive_capabilities=$(smartctl \
+  local drive_capabilities=$(smartctl \
     -c ${drive})
 
   # Set the Drive polling interval

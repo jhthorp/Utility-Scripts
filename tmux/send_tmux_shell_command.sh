@@ -93,8 +93,8 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 send_tmux_shell_command ()
 {
-  declare -r name="${1}"
-  declare -r cmd="${2}"
+  local name="${1}"
+  local cmd="${2}"
 
   tmux \
     run-shell \

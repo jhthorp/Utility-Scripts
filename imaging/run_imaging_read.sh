@@ -112,8 +112,8 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 run_imaging_read ()
 {
-  declare -r drive=${1}
-  declare -r blocksize=${2:-1048576}
+  local drive=${1}
+  local blocksize=${2:-1048576}
 
   # TODO: Allow the progress to be disabled by a parameter
   # dd \

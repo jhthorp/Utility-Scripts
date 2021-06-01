@@ -92,7 +92,7 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 read_smart_test_results ()
 {
-  declare -r drive=${1}
+  local drive=${1}
 
   smartctl \
     -A \

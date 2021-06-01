@@ -95,9 +95,9 @@ list_all_drives_smartctl()
   gs_smartdrives=""
 
   # Full path to 'smartctl' program:
-  declare -r smartctl=/usr/local/sbin/smartctl
+  local smartctl=/usr/local/sbin/smartctl
 
-  declare -r gs_drives=$("$smartctl" \
+  local gs_drives=$("$smartctl" \
     --scan | 
     awk \
       '{print $1}' \
@@ -106,7 +106,7 @@ list_all_drives_smartctl()
   FIRST_PASS="TRUE"
   for gs_drive in ${gs_drives}
   do
-    declare -r gs_smart_flag=$("${smartctl}" \
+    local gs_smart_flag=$("${smartctl}" \
       -i "${gs_drive}" \
     )
     if [ "${FIRST_PASS}" = "TRUE" ]; then

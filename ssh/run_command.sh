@@ -95,10 +95,10 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 run_command ()
 {
-  declare -r host="${1}"
-  declare -r port="${2}"
-  declare -r user="${3}"
-  declare -r cmd="${4}"
+  local host="${1}"
+  local port="${2}"
+  local user="${3}"
+  local cmd="${4}"
 
   ssh \
     -p ${port} \

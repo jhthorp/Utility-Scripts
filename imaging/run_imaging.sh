@@ -123,10 +123,10 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 run_imaging ()
 {
-  declare -r drive=${1}
-  declare -r blocksize=${2:-1048576}
-  declare -r type=${3:read-write} # Values: read, write, read-write
-  declare -r write_random_pattern=${4:-false}
+  local drive=${1}
+  local blocksize=${2:-1048576}
+  local type=${3:read-write} # Values: read, write, read-write
+  local write_random_pattern=${4:-false}
 
   if [ "${type}" = "write" ]
   then

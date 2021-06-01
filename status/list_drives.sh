@@ -96,8 +96,8 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 list_drives ()
 {
-  declare -r all_drives=${1:-false}
-  declare -r use_sysctl=${2:-false}
+  local all_drives=${1:-false}
+  local use_sysctl=${2:-false}
 
   if [ "${all_drives}" = true ]
   then

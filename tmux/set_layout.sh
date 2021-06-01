@@ -92,7 +92,7 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 set_layout ()
 {
-  declare -r layout="${1}"
+  local layout="${1}"
 
   tmux \
     select-layout \

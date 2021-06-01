@@ -92,7 +92,7 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 select_session_pane ()
 {
-  declare -r pane="${1}"
+  local pane="${1}"
 
   tmux \
     select-pane \

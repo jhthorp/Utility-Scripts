@@ -92,7 +92,7 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 attach_tmux_session ()
 {
-  declare -r name="${1}"
+  local name="${1}"
   
   tmux \
     attach-session \

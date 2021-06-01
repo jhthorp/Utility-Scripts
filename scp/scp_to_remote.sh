@@ -96,11 +96,11 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 scp_to_remote ()
 {
-  declare -r host="${1}"
-  declare -r port="${2}"
-  declare -r user="${3}"
-  declare -r localPath="${4}"
-  declare -r remotePath="${5}"
+  local host="${1}"
+  local port="${2}"
+  local user="${3}"
+  local localPath="${4}"
+  local remotePath="${5}"
 
   scp \
     -rp \

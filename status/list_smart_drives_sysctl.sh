@@ -97,7 +97,7 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 list_smart_drives_sysctl ()
 {
   # Full path to 'smartctl' program:
-  declare -r smartctl=/usr/local/sbin/smartctl
+  local smartctl=/usr/local/sbin/smartctl
 
   sysctl_kern_disks=$(sysctl \
     -n kern.disks \

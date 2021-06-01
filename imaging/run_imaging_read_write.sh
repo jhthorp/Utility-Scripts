@@ -117,23 +117,23 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 run_imaging_read_write ()
 {
-  declare -r drive=${1}
-  declare -r blocksize=${2:-1048576}
-  declare -r write_random_pattern=${3:-false}
+  local drive=${1}
+  local blocksize=${2:-1048576}
+  local write_random_pattern=${3:-false}
 
   # Local Variables
-  declare -r AUTOMATED_SKIP="auto_skip"
-  declare -r CUR_DIR="${BASH_SOURCE%/*}"
+  local AUTOMATED_SKIP="auto_skip"
+  local CUR_DIR="${BASH_SOURCE%/*}"
 
-  declare -r WRITE_SCRIPT="${CUR_DIR}/run_imaging_write.sh"
-  declare -r WRITE_PARAMS="${drive} ${blocksize} ${write_random_pattern}"
-  declare -r WRITE_PARAMS_AUTO="${AUTOMATED_SKIP} ${WRITE_PARAMS}"
-  declare -r WRITE_CMD="${WRITE_SCRIPT} ${WRITE_PARAMS_AUTO}"
+  local WRITE_SCRIPT="${CUR_DIR}/run_imaging_write.sh"
+  local WRITE_PARAMS="${drive} ${blocksize} ${write_random_pattern}"
+  local WRITE_PARAMS_AUTO="${AUTOMATED_SKIP} ${WRITE_PARAMS}"
+  local WRITE_CMD="${WRITE_SCRIPT} ${WRITE_PARAMS_AUTO}"
 
-  declare -r READ_SCRIPT="${CUR_DIR}/run_imaging_read.sh"
-  declare -r READ_PARAMS="${AUTOMATED_SKIP} ${drive} ${blocksize}"
-  declare -r READ_PARAMS_AUTO="${AUTOMATED_SKIP} ${READ_PARAMS}"
-  declare -r READ_CMD="${READ_SCRIPT} ${READ_PARAMS_AUTO}"
+  local READ_SCRIPT="${CUR_DIR}/run_imaging_read.sh"
+  local READ_PARAMS="${AUTOMATED_SKIP} ${drive} ${blocksize}"
+  local READ_PARAMS_AUTO="${AUTOMATED_SKIP} ${READ_PARAMS}"
+  local READ_CMD="${READ_SCRIPT} ${READ_PARAMS_AUTO}"
 
   parallel_commands \
     "${WRITE_CMD}" \

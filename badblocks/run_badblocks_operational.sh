@@ -112,8 +112,8 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 run_badblocks_operational ()
 {
-  declare -r drive=${1}
-  declare -r blocksize=${2:-4096}
+  local drive=${1}
+  local blocksize=${2:-4096}
 
   badblocks \
     -b ${blocksize} \

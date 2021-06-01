@@ -93,8 +93,8 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 run_smart_long_test ()
 {
-  declare -r drive=${1}
-  declare -r captive=${2:-false}
+  local drive=${1}
+  local captive=${2:-false}
 
   if [ "${captive}" = true ]
   then

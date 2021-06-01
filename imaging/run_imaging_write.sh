@@ -114,9 +114,9 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 run_imaging_write ()
 {
-  declare -r drive=${1}
-  declare -r blocksize=${2:-1048576}
-  declare -r random=${3:-false}
+  local drive=${1}
+  local blocksize=${2:-1048576}
+  local random=${3:-false}
 
   declare pattern="/dev/zero"
   if [ "${random}" = true ]

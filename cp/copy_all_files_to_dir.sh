@@ -72,6 +72,36 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #                                  FUNCTIONS                                   #
 ################################################################################
 #===============================================================================
+# This function will convert a relative path into an absolute path.
+#
+# GLOBALS / SIDE EFFECTS:
+#   N_A - N/A
+#
+# OPTIONS:
+#   [-na] N/A
+#
+# ARGUMENTS:
+#   [1 - relPath] A relative path
+#
+# OUTPUTS:
+#   absPath - The absolute path
+#
+# RETURN:
+#   0 - SUCCESS
+#   Non-Zero - ERROR
+#===============================================================================
+REL_TO_ABS_PATH () {
+  local relPath="${1}"
+
+  # Convert any relative paths into absolute paths
+  local TMP_ABS_PATH=$(cd ${relPath}; printf %s. "$PWD")
+  TMP_ABS_PATH=${TMP_ABS_PATH%?}
+
+  # Return the absolute path
+  echo "${TMP_ABS_PATH}"
+}
+
+#===============================================================================
 # This function will copy all files recursively into a single directory.
 #
 # GLOBALS / SIDE EFFECTS:
@@ -96,41 +126,36 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 copy_all_files_to_dir ()
 {
-  declare -r srcPath=${1}
-  declare -r srcDirRelativeToPath=${2}
-  declare -r destDir=${3}
-  declare -r filenameStructure=${4}
-  declare -r keepStructure=${5-true}
-
-  declare -r CUR_DIR=$(printf %s. "$PWD")
+  local srcPath=$(REL_TO_ABS_PATH ${1})
+  local srcDir=${2}
+  local destDir=${3}
+  local filenameStructure=${4}
+  local keepStructure=${5-true}
 
   # Change into the origin directory
-  cd ${srcPath}
+  cd "${srcPath}/${srcDir}"
 
   mkdir \
-    -p ${destDir}
+    -p "${srcPath}/${destDir}/"
 
   if [ "${keepStructure}" = true ]
   then
     find \
-      "${srcDir}" \
+      "." \
       -type f \
       -name "${filenameStructure}" | 
-      cpio -pdm --quiet "${destDir}"
+      cpio -pdm --quiet "${srcPath}/${destDir}/"
   else
     find \
-      "${srcDir}" \
+      "./" \
       -type f \
       -name "${filenameStructure}" \
       -exec cp \
         ${copy_options} \
         {} \
-        "${destDir}" \
-        \;
+        "${srcPath}/${destDir}/" \
+    \;
   fi
-
-  # Return to the original directory
-  cd ${CUR_DIR}
 }
 
 ################################################################################

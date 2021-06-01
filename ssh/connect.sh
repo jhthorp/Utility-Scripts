@@ -94,9 +94,9 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 connect ()
 {
-  declare -r host="${1}"
-  declare -r port="${2}"
-  declare -r user="${3}"
+  local host="${1}"
+  local port="${2}"
+  local user="${3}"
 
   ssh \
     -p ${port} \

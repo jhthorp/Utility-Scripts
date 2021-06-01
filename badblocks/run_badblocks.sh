@@ -117,9 +117,9 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 run_badblocks ()
 {
-  declare -r drive=${1}
-  declare -r blocksize=${2:-4096}
-  declare -r destructive=${3:-false}
+  local drive=${1}
+  local blocksize=${2:-4096}
+  local destructive=${3:-false}
 
   if [ "${destructive}" = true ]
   then

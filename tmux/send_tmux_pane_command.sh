@@ -93,8 +93,8 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 send_tmux_pane_command ()
 {
-  declare -r pane="${1}"
-  declare -r cmd="${2}"
+  local pane="${1}"
+  local cmd="${2}"
 
   tmux \
     send-keys \

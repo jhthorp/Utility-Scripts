@@ -94,7 +94,7 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 list_smart_drives ()
 {
-  declare -r use_sysctl=${1:-false}
+  local use_sysctl=${1:-false}
 
   if [ "${use_sysctl}" = true ]
   then

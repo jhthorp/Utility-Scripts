@@ -96,9 +96,9 @@ DIR () { echo "${stack_vars[${#stack_vars[@]}-1]}"; }
 #===============================================================================
 run_smart_test ()
 {
-  declare -r drive=${1}
-  declare -r type=${2} # Values: short, long, conveyance
-  declare -r captive=${3:-false}
+  local drive=${1}
+  local type=${2} # Values: short, long, conveyance
+  local captive=${3:-false}
 
   if [ "${type}" = "short" ]
   then
