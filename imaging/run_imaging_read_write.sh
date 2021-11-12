@@ -131,7 +131,7 @@ run_imaging_read_write ()
   local WRITE_CMD="${WRITE_SCRIPT} ${WRITE_PARAMS_AUTO}"
 
   local READ_SCRIPT="${CUR_DIR}/run_imaging_read.sh"
-  local READ_PARAMS="${AUTOMATED_SKIP} ${drive} ${blocksize}"
+  local READ_PARAMS="${drive} ${blocksize}"
   local READ_PARAMS_AUTO="${AUTOMATED_SKIP} ${READ_PARAMS}"
   local READ_CMD="${READ_SCRIPT} ${READ_PARAMS_AUTO}"
 
